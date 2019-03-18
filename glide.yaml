@@ -2,3 +2,5 @@ package: gitlab.com/letsgo
 import:
 - package: github.com/gin-gonic/gin
   version: ~1.3.0
+- package: github.com/joho/godotenv
+  version: ~1.3.0

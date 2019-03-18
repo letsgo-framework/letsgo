@@ -1,5 +1,5 @@
-hash: 25dc962561df725f53e7d7d5f1318a46160f51c5d7730c27d0848574a3703d64
-updated: 2019-03-18T08:51:16.937473851+05:30
+hash: eb38f64205a9ba3e901c6d3e9477777531fd2fe11301d7c8405f1958f6bd3c36
+updated: 2019-03-18T09:07:38.821629001+05:30
 imports:
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
@@ -13,6 +13,8 @@ imports:
   version: 5831880292e721c76b58a16ecc60adc27d8e6355
   subpackages:
   - proto
+- name: github.com/joho/godotenv
+  version: 23d116af351c84513e1946b527c88823e476be13
 - name: github.com/json-iterator/go
   version: 0ff49de124c6f76f8494e194af75bde0f1a49a29
 - name: github.com/mattn/go-isatty
