@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"gitlab.com/letsgo/controllers"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -42,9 +43,7 @@ func main() {
 	// Grouped api
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/", func(c *gin.Context) {
-			c.String(200, `Hello World`)
-		})
+		v1.GET("/", controllers.HelloWorld)
 
 	}
 

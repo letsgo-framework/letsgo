@@ -8,3 +8,4 @@ import:
   version: ~1.0.0
   subpackages:
   - mongo
+- package: gopkg.in/check.v1
