@@ -2,6 +2,7 @@ package tests
 
 import (
 	"github.com/gin-gonic/gin"
+	"gitlab.com/letsgo/routes"
 	"net/http"
 	"os"
 	"testing"
@@ -15,6 +16,7 @@ type MySuite struct{
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) SetUpTest(c *C) {
+	s.srv = routes.PaveRoutes()
 	go s.srv.Run(":8084")
 }
 
@@ -23,7 +25,7 @@ func TestMain(m *testing.M) {
 }
 
 func (s *MySuite) TestHelloWorld(c *C) {
-	requestURL := "http://localhost:8084/api/v1/"
+	requestURL := "http://127.0.0.1:8084/api/v1/"
 	resp, err := http.Get(requestURL)
 	if err != nil {
 		c.Error(err)
