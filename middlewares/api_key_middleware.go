@@ -15,7 +15,7 @@ func TokenAuthMiddleware() gin.HandlerFunc {
 
 	// We want to make sure the token is set, bail if not
 	if requiredToken == "" {
-		log.Fatal("Please set API_TOKEN environment variable")
+		log.Fatal("Please set X_API_KEY environment variable")
 	}
 
 	return func(c *gin.Context) {
