@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"gitlab.com/letsgo/routes"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -37,16 +37,7 @@ func main() {
 
 	fmt.Println("Connected to MongoDB!")
 
-	r := gin.Default()
+	srv := routes.PaveRoutes()
+	srv.Run(os.Getenv("PORT"))
 
-	// Grouped api
-	v1 := r.Group("/api/v1")
-	{
-		v1.GET("/", func(c *gin.Context) {
-			c.String(200, `Hello World`)
-		})
-
-	}
-
-	r.Run(os.Getenv("PORT"))
 }
