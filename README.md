@@ -13,12 +13,6 @@
 - check ( https://godoc.org/gopkg.in/check.v1 )
 - godotenv ( https://github.com/joho/godotenv )
 
-### Run : ```go run main.go```
-
-### Build : ```go build```
-
-### Test : ```go test tests/main_test.go```
-
 ### Directory Structure
 
 - The `controllers` directory contains the core code of your application.
@@ -34,5 +28,19 @@ letsGo uses `godotenv` for setting environment variables. The root directory of 
 copy and rename it to `.env` to set your environment variables.
 
 You need to create a `.env.testing` file from `.env.example` for running tests.
+
+### Setting up
+
+- clone letsGo
+- change package name in `glide.yaml` to your package name
+- change the internal package (controllers, tests, helpers etc.) paths as per your requirement
+- setup `.env` and `.env.testing`
+
+### Run : ```go run main.go```
+
+### Build : ```go build```
+
+### Test : ```go test tests/main_test.go```
+
 
 
