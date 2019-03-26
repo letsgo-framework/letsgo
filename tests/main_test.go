@@ -22,7 +22,7 @@ type MySuite struct{
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) SetUpTest(c *C) {
-	err := godotenv.Load("../.env")
+	err := godotenv.Load("../.env.testing")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
