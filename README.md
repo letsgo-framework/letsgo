@@ -16,8 +16,8 @@
 ### Run
 ```go run main.go```
 
-###Build
+### Build
 ```go build```
 
-###Test
+### Test
 ```go test tests/main_test.go```
