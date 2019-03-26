@@ -2,13 +2,10 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
+	"gitlab.com/letsgo/helpers"
 	"log"
 	"os"
 )
-
-func respondWithError(c *gin.Context, code int, message interface{}) {
-	c.AbortWithStatusJSON(code, gin.H{"error": message})
-}
 
 func TokenAuthMiddleware() gin.HandlerFunc {
 	requiredToken := os.Getenv("X_API_KEY")
@@ -22,12 +19,12 @@ func TokenAuthMiddleware() gin.HandlerFunc {
 		token := c.Request.Header.Get(`X_API_KEY`)
 
 		if token == "" {
-			respondWithError(c, 401, "API token required")
+			helpers.RespondWithError(c, 401, "API token required")
 			return
 		}
 
 		if token != requiredToken {
-			respondWithError(c, 401, "Invalid API token")
+			helpers.RespondWithError(c, 401, "Invalid API token")
 			return
 		}
 

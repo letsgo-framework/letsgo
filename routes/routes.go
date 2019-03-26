@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-oauth2/gin-server"
 	"gitlab.com/letsgo/controllers"
+	"gitlab.com/letsgo/helpers"
 	"gitlab.com/letsgo/middlewares"
 )
 
@@ -14,7 +15,7 @@ func PaveRoutes() *gin.Engine {
 
 	config := ginserver.Config{
 		ErrorHandleFunc: func(ctx *gin.Context, err error) {
-			respondWithError(ctx, 401, "invalid access_token")
+			helpers.RespondWithError(ctx, 401, "invalid access_token")
 		},
 		TokenKey: "github.com/go-oauth2/gin-server/access-token",
 		Skipper: func(_ *gin.Context) bool {
@@ -36,8 +37,4 @@ func PaveRoutes() *gin.Engine {
 	}
 
 	return r
-}
-
-func respondWithError(c *gin.Context, code int, message interface{}) {
-	c.AbortWithStatusJSON(code, gin.H{"error": message})
 }
