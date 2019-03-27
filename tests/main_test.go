@@ -1,19 +1,27 @@
 package tests
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"gitlab.com/letsgo/database"
 	"gitlab.com/letsgo/routes"
 	"gitlab.com/letsgo/types"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
+	. "gopkg.in/check.v1"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"testing"
-	. "gopkg.in/check.v1"
 )
+
+type TestInsert struct {
+	Name string `form:"name" binding:"required" json:"name" bson:"name"`
+}
 
 type MySuite struct{
 	srv *gin.Engine
@@ -27,7 +35,7 @@ func (s *MySuite) SetUpTest(c *C) {
 		log.Fatal("Error loading .env file")
 	}
 	s.srv = routes.PaveRoutes()
-	go s.srv.Run(":8084")
+	go s.srv.Run(os.Getenv("PORT"))
 }
 
 func TestMain(m *testing.M) {
@@ -233,6 +241,27 @@ func (s *MySuite) TestAccessTokenFail(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
+func (s *MySuite) TestDatabaseConnection(c *C) {
+	client, _ := database.TestConnect()
+	err := client.Ping(context.Background(), readpref.Primary())
+	c.Assert(err, Equals, nil)
+}
+
+func (s *MySuite) TestDBInsert(c *C) {
+	_, db := database.TestConnect()
+	input := TestInsert{Name: "testname"}
+	collection := db.Collection("test_collection")
+	_, err := collection.InsertOne(context.Background(), input)
+	if err != nil {
+		c.Error(err)
+	}
+	result := TestInsert{}
+	err = collection.FindOne(context.Background(), bson.M{"name": "testname"}).Decode(&result)
+	if err != nil {
+		c.Error(err)
+	}
+	c.Assert(result, Equals, input)
+}
 
 func Test(t *testing.T) {
 	TestingT(t)
