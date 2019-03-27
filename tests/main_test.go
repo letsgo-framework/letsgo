@@ -242,15 +242,15 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 }
 
 func (s *TestSuite) TestDatabaseConnection(c *C) {
-	client, _ := database.TestConnect()
-	err := client.Ping(context.Background(), readpref.Primary())
+	database.TestConnect()
+	err := database.Client.Ping(context.Background(), readpref.Primary())
 	c.Assert(err, Equals, nil)
 }
 
 func (s *TestSuite) TestDBInsert(c *C) {
-	_, db := database.TestConnect()
+	database.TestConnect()
 	input := TestInsert{Name: "testname"}
-	collection := db.Collection("test_collection")
+	collection := database.DB.Collection("test_collection")
 	_, err := collection.InsertOne(context.Background(), input)
 	if err != nil {
 		c.Error(err)
