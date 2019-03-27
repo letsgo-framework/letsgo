@@ -23,13 +23,13 @@ type TestInsert struct {
 	Name string `form:"name" binding:"required" json:"name" bson:"name"`
 }
 
-type MySuite struct{
+type TestSuite struct{
 	srv *gin.Engine
 }
 
-var _ = Suite(&MySuite{})
+var _ = Suite(&TestSuite{})
 
-func (s *MySuite) SetUpTest(c *C) {
+func (s *TestSuite) SetUpTest(c *C) {
 	err := godotenv.Load("../.env.testing")
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -42,7 +42,7 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
-func (s *MySuite) TestGetEnv(c *C) {
+func (s *TestSuite) TestGetEnv(c *C) {
 
 	dbPort := os.Getenv("DATABASE_PORT")
 	fmt.Printf("db port %s",dbPort)
@@ -54,7 +54,7 @@ func (s *MySuite) TestGetEnv(c *C) {
 }
 
 
-func (s *MySuite) TestNoApiToken(c *C) {
+func (s *TestSuite) TestNoApiToken(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/"
 	resp, err := http.Get(requestURL)
 	if err != nil {
@@ -65,7 +65,7 @@ func (s *MySuite) TestNoApiToken(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
-func (s *MySuite) TestApiTokenMismatch(c *C) {
+func (s *TestSuite) TestApiTokenMismatch(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -79,7 +79,7 @@ func (s *MySuite) TestApiTokenMismatch(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
-func (s *MySuite) TestHelloWorld(c *C) {
+func (s *TestSuite) TestHelloWorld(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -94,7 +94,7 @@ func (s *MySuite) TestHelloWorld(c *C) {
 }
 
 
-func (s *MySuite) TestCredentials(c *C) {
+func (s *TestSuite) TestCredentials(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -108,7 +108,7 @@ func (s *MySuite) TestCredentials(c *C) {
 	c.Assert(resp.StatusCode, Equals, 200)
 }
 
-func (s *MySuite) TestTokenSuccess(c *C) {
+func (s *TestSuite) TestTokenSuccess(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -136,7 +136,7 @@ func (s *MySuite) TestTokenSuccess(c *C) {
 	c.Assert(resp.StatusCode, Equals, 200)
 }
 
-func (s *MySuite) TestTokenFail(c *C) {
+func (s *TestSuite) TestTokenFail(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/token"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -150,7 +150,7 @@ func (s *MySuite) TestTokenFail(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
-func (s *MySuite) TestAccessTokenSuccess(c *C) {
+func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -196,7 +196,7 @@ func (s *MySuite) TestAccessTokenSuccess(c *C) {
 }
 
 
-func (s *MySuite) TestAccessTokenFail(c *C) {
+func (s *TestSuite) TestAccessTokenFail(c *C) {
 	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
@@ -241,13 +241,13 @@ func (s *MySuite) TestAccessTokenFail(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
-func (s *MySuite) TestDatabaseConnection(c *C) {
+func (s *TestSuite) TestDatabaseConnection(c *C) {
 	client, _ := database.TestConnect()
 	err := client.Ping(context.Background(), readpref.Primary())
 	c.Assert(err, Equals, nil)
 }
 
-func (s *MySuite) TestDBInsert(c *C) {
+func (s *TestSuite) TestDBInsert(c *C) {
 	_, db := database.TestConnect()
 	input := TestInsert{Name: "testname"}
 	collection := db.Collection("test_collection")
