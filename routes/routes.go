@@ -1,3 +1,14 @@
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application.
+| TokenAuthMiddleware middleware is used for X_API_KEY authentication.
+| Enjoy building your API!
+|
+*/
+
 package routes
 
 import (
@@ -25,7 +36,7 @@ func PaveRoutes() *gin.Engine {
 	// Grouped api
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/", controllers.HelloWorld)
+		v1.GET("/", controllers.Home)
 		v1.GET("/credentials", controllers.GetCredentials)
 		v1.GET("/token", controllers.GetToken)
 		auth := v1.Group("auth")

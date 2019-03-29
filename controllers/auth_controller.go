@@ -1,3 +1,12 @@
+/*
+|--------------------------------------------------------------------------
+| Authentication Controller
+|--------------------------------------------------------------------------
+|
+| GetCredentials works on oauth2 Client Credentials Grant and returns CLIENT_ID, CLIENT_SECRET
+| GetToken takes CLIENT_ID, CLIENT_SECRET, grant_type, scope and returns access_token and some other information
+*/
+
 package controllers
 
 import (

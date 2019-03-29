@@ -1,3 +1,14 @@
+/*
+|--------------------------------------------------------------------------
+| Mongo Database Connection
+|--------------------------------------------------------------------------
+|
+| We are using mongo-go-driver to connect to mongodb
+| Connect is used to make connection
+| TestConnect is used to make connection while running tests
+|
+*/
+
 package database
 
 import (
