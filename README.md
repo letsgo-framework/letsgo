@@ -45,6 +45,9 @@ You need to create a `.env.testing` file from `.env.example` for running tests.
 
 ### Authentication
 
+letsGo uses Go OAuth2 (https://godoc.org/golang.org/x/oauth2) for authentication.
+
+#### Client Credential Grant
 - `/api/v1/credentials` : returns `CLIENT_ID` and `CLIENT_SECRET`
 - `/api/v1/token` : Send `CLIENT_ID`, `CLIENT_SECRET`, `grant_type` and `scope` to generate `access_token`
 - Any route starting with `/api/v1/auth/` needs `Authorization` Header with the `Bearer access_token`
