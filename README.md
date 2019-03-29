@@ -35,12 +35,19 @@ You need to create a `.env.testing` file from `.env.example` for running tests.
 - change package name in `glide.yaml` to your package name
 - change the internal package (controllers, tests, helpers etc.) paths as per your requirement
 - setup `.env` and `.env.testing`
+- run `glide install` to install dependencies
 
 ### Run : ```go run main.go```
 
 ### Build : ```go build```
 
 ### Test : ```go test tests/main_test.go```
+
+### Authentication
+
+- `/api/v1/credentials` : returns `CLIENT_ID` and `CLIENT_SECRET`
+- `/api/v1/token` : Send `CLIENT_ID`, `CLIENT_SECRET`, `grant_type` and `scope` to generate `access_token`
+- Any route starting with `/api/v1/auth/` needs `Authorization` Header with the `Bearer access_token`
 
 
 

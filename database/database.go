@@ -6,6 +6,7 @@ import (
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"log"
 	"os"
 	"time"
@@ -28,8 +29,12 @@ func Connect() (*mongo.Client, *mongo.Database) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println("Connected to MongoDB!")
+	err = Client.Ping(context.Background(), readpref.Primary())
+	if err == nil {
+		fmt.Println("Connected to MongoDB!")
+	} else {
+		fmt.Println("Could not connect to MongoDB!")
+	}
 
 	return Client, DB
 }
@@ -49,8 +54,12 @@ func TestConnect() (*mongo.Client, *mongo.Database) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println("Connected to MongoDB for testing!")
+	err = Client.Ping(context.Background(), readpref.Primary())
+	if err == nil {
+		fmt.Println("Connected to MongoDB for testing!")
+	} else {
+		fmt.Println("Could not connect to MongoDB!")
+	}
 
 	return Client, DB
 }
