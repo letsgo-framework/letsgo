@@ -14,9 +14,9 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-oauth2/gin-server"
-	"gitlab.com/letsgo/controllers"
-	"gitlab.com/letsgo/helpers"
-	"gitlab.com/letsgo/middlewares"
+	"github.com/letsGo/controllers"
+	"github.com/letsGo/helpers"
+	"github.com/letsGo/middlewares"
 )
 
 func PaveRoutes() *gin.Engine {

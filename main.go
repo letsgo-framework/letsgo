@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/joho/godotenv"
-	"gitlab.com/letsgo/database"
-	"gitlab.com/letsgo/routes"
+	"github.com/letsGo/database"
+	"github.com/letsGo/routes"
 	"log"
 	"os"
 )
