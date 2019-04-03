@@ -27,7 +27,7 @@ func PaveRoutes() *gin.Engine {
 	go hub.Run()
 
 	r.Use(middlewares.TokenAuthMiddleware())
-
+	//r.Use(cors.Default())
 	config := ginserver.Config{
 		ErrorHandleFunc: func(ctx *gin.Context, err error) {
 			helpers.RespondWithError(ctx, 401, "invalid access_token")

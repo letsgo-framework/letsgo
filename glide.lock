@@ -1,8 +1,10 @@
-hash: 0e9e2fde21ec514bd697456e1a860da8cc7eb1f589d14af21b54c56e1ea4a8f9
-updated: 2019-04-01T14:41:58.428096949+05:30
+hash: 8162f122d3292212b350d79213d03b50a99d18915f87c68bd7b5e4023140e40d
+updated: 2019-04-04T01:06:20.037263366+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
+- name: github.com/gin-contrib/cors
+  version: cf4846e6a636a76237a28d9286f163c132e841bc
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
 - name: github.com/gin-gonic/gin
