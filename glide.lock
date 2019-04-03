@@ -1,5 +1,5 @@
-hash: f5769f3f67769770fb04f6217cdeedc8cceff285f0ef830c0ad39ee6d2f02a53
-updated: 2019-03-25T10:31:27.508517501+05:30
+hash: 0e9e2fde21ec514bd697456e1a860da8cc7eb1f589d14af21b54c56e1ea4a8f9
+updated: 2019-04-01T14:41:58.428096949+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -23,6 +23,8 @@ imports:
   version: 2a8bb927dd31d8daada140a5d09578521ce5c36a
 - name: github.com/google/uuid
   version: 0cd6bf5da1e1c83f8b45653022c74f71af0538a4
+- name: github.com/gorilla/websocket
+  version: 66b9c49e59c6c48f0ffce28c2d8b8a5678502c6d
 - name: github.com/joho/godotenv
   version: 23d116af351c84513e1946b527c88823e476be13
 - name: github.com/json-iterator/go

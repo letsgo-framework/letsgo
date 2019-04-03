@@ -22,6 +22,10 @@ import (
 func PaveRoutes() *gin.Engine {
 	r := gin.Default()
 
+	// websocket setup
+	hub := controllers.NewHub()
+	go hub.Run()
+
 	r.Use(middlewares.TokenAuthMiddleware())
 
 	config := ginserver.Config{
@@ -44,6 +48,11 @@ func PaveRoutes() *gin.Engine {
 			auth.Use(ginserver.HandleTokenVerify(config))
 			auth.GET("/", controllers.Verify)
 		}
+
+		// websocket route
+		r.GET("/ws", func(c *gin.Context) {
+			controllers.ServeWebsocket(hub, c.Writer, c.Request)
+		})
 
 	}
 
