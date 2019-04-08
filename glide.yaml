@@ -14,3 +14,5 @@ import:
 - package: github.com/go-oauth2/gin-server
 - package: github.com/gorilla/websocket
   version: ~1.4.0
+- package: github.com/go-swagger/go-swagger
+  version: ~0.19.0

@@ -1,5 +1,5 @@
-hash: 0e9e2fde21ec514bd697456e1a860da8cc7eb1f589d14af21b54c56e1ea4a8f9
-updated: 2019-04-01T14:41:58.428096949+05:30
+hash: a4b0be5df0471d224233efa04faf2c0478c7338490064996e48c2a23990b1699
+updated: 2019-04-05T13:41:50.939694323+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -15,6 +15,8 @@ imports:
   version: 0d298614c9ba5f998aae88f869d34d298fdd7f1b
 - name: github.com/go-stack/stack
   version: 2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
+- name: github.com/go-swagger/go-swagger
+  version: 51061fa3be377b2ef34c70d14d2058b467009eb4
 - name: github.com/golang/protobuf
   version: 5831880292e721c76b58a16ecc60adc27d8e6355
   subpackages:
