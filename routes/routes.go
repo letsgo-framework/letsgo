@@ -12,11 +12,11 @@
 package routes
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-oauth2/gin-server"
 	"github.com/letsGo/controllers"
 	"github.com/letsGo/helpers"
-	"github.com/letsGo/middlewares"
 )
 
 func PaveRoutes() *gin.Engine {
@@ -26,8 +26,8 @@ func PaveRoutes() *gin.Engine {
 	hub := controllers.NewHub()
 	go hub.Run()
 
-	r.Use(middlewares.TokenAuthMiddleware())
-	//r.Use(cors.Default())
+	r.Use(cors.Default())
+
 	config := ginserver.Config{
 		ErrorHandleFunc: func(ctx *gin.Context, err error) {
 			helpers.RespondWithError(ctx, 401, "invalid access_token")
