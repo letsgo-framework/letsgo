@@ -22,6 +22,19 @@ import (
 var clientStore = store.NewClientStore()
 var manager = manage.NewDefaultManager()
 
+func AuthInit() {
+	manager.SetAuthorizeCodeTokenCfg(manage.DefaultAuthorizeCodeTokenCfg)
+
+	// token memory store
+	manager.MustTokenStorage(store.NewMemoryTokenStore())
+
+	manager.MapClientStorage(clientStore)
+
+	ginserver.InitServer(manager)
+	ginserver.SetAllowGetAccessRequest(true)
+	ginserver.SetClientInfoHandler(server.ClientFormHandler)
+}
+
 func GetCredentials(c *gin.Context) {
 	clientId := uuid.New().String()
 	clientSecret := uuid.New().String()
@@ -38,19 +51,6 @@ func GetCredentials(c *gin.Context) {
 }
 
 func GetToken(c *gin.Context) {
-
-	manager.SetAuthorizeCodeTokenCfg(manage.DefaultAuthorizeCodeTokenCfg)
-
-	// token memory store
-	manager.MustTokenStorage(store.NewMemoryTokenStore())
-
-	manager.MapClientStorage(clientStore)
-
-	ginserver.InitServer(manager)
-	ginserver.SetAllowGetAccessRequest(true)
-	ginserver.SetClientInfoHandler(server.ClientFormHandler)
-
-
 	ginserver.HandleTokenRequest(c)
 }
 

@@ -4,7 +4,6 @@
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application.
-| TokenAuthMiddleware middleware is used for X_API_KEY authentication.
 | Enjoy building your API!
 |
 */
@@ -26,8 +25,11 @@ func PaveRoutes() *gin.Engine {
 	hub := controllers.NewHub()
 	go hub.Run()
 
+	// CORS
 	r.Use(cors.Default())
 
+	// Auth Init
+	controllers.AuthInit()
 	config := ginserver.Config{
 		ErrorHandleFunc: func(ctx *gin.Context, err error) {
 			helpers.RespondWithError(ctx, 401, "invalid access_token")
@@ -37,6 +39,7 @@ func PaveRoutes() *gin.Engine {
 			return false
 		},
 	}
+
 	// Grouped api
 	v1 := r.Group("/api/v1")
 	{
