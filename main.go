@@ -18,6 +18,11 @@ func main() {
 	database.Connect()
 
 	srv := routes.PaveRoutes()
-	srv.Run(os.Getenv("PORT"))
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":8080"
+	}
+	srv.Run(port)
 
 }

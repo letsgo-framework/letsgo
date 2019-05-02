@@ -36,16 +36,13 @@ func Connect() (*mongo.Client, *mongo.Database) {
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbURL))
 	Client = client
-	DB = Client.Database(os.Getenv("DATABASE"))
-	if err != nil {
-		log.Fatal(err)
-	}
 	err = Client.Ping(context.Background(), readpref.Primary())
 	if err == nil {
-		fmt.Println("Connected to MongoDB!")
+		log.Println("Connected to MongoDB!")
 	} else {
-		fmt.Println("Could not connect to MongoDB!")
+		log.Fatalln("Could not connect to MongoDB! Please check if mongo is running.")
 	}
+	DB = Client.Database(os.Getenv("DATABASE"))
 
 	return Client, DB
 }
