@@ -15,6 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-oauth2/gin-server"
 	"github.com/letsGo/controllers"
+	"github.com/letsGo/gql"
 	"github.com/letsGo/helpers"
 )
 
@@ -39,6 +40,9 @@ func PaveRoutes() *gin.Engine {
 			return false
 		},
 	}
+
+	// Graphql Init
+	gql.InitGraphql(r)
 
 	// Grouped api
 	v1 := r.Group("/api/v1")
