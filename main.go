@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/joho/godotenv"
-	"github.com/letsGo/database"
 	"github.com/letsGo/routes"
+	database "github.com/letsgo-framework/letsgo-mongo-connector"
 	"log"
 	"os"
 )

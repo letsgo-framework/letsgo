@@ -1,5 +1,5 @@
-hash: 5cde682e36d22672ba78312ee138059d817526a123f5aa01577d70c8b761bff8
-updated: 2019-05-03T12:59:19.07716279+05:30
+hash: f3f09254c76a3a8b7335a0c180e40315157b4a59a427f76f220d5b8821872a12
+updated: 2019-05-06T07:06:29.902994078+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -46,6 +46,8 @@ imports:
   version: 23d116af351c84513e1946b527c88823e476be13
 - name: github.com/json-iterator/go
   version: 0ff49de124c6f76f8494e194af75bde0f1a49a29
+- name: github.com/letsgo-framework/letsgo-mongo-connector
+  version: 190f7a1a34a726a596705f1e9c4636d6864ea99c
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/modern-go/concurrent
