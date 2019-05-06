@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gorilla/websocket"
-	"github.com/letsGo/types"
+	"github.com/letsgo-framework/letsgo/types"
 	"log"
 	"net/http"
 )
