@@ -1,5 +1,5 @@
-hash: 5cde682e36d22672ba78312ee138059d817526a123f5aa01577d70c8b761bff8
-updated: 2019-05-03T12:59:19.07716279+05:30
+hash: 839c6d66c771e3efb51df97348d29c16de8f8e237834aef984c768805af270fc
+updated: 2019-05-07T16:57:40.49597554+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -132,6 +132,8 @@ imports:
   version: 20d25e2804050c1cd24a7eea1e7a6447dd0e74ec
 - name: gopkg.in/go-playground/validator.v8
   version: 5f1438d3fca68893a817e4a66806cea46a9e4ebf
+- name: gopkg.in/natefinch/lumberjack.v2
+  version: a96e63847dc3c67d17befa69c303767e2f84e54f
 - name: gopkg.in/oauth2.v3
   version: fe41d7bfbb24c7beb58643b86cab0b14689d5077
   subpackages:

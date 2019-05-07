@@ -1,0 +1,18 @@
+env loaded
+Connected to MongoDB!
+[GIN-debug] [WARNING] Now Gin requires Go 1.6 or later and Go 1.7 will be required soon.
+
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /graphql/                 --> github.com/letsgo-framework/letsgo/gql.InitGraphql.func1 (4 handlers)
+[GIN-debug] GET    /graphql/                 --> github.com/letsgo-framework/letsgo/gql.InitGraphql.func2 (4 handlers)
+[GIN-debug] GET    /api/v1/                  --> github.com/letsgo-framework/letsgo/controllers.Home (4 handlers)
+[GIN-debug] GET    /api/v1/credentials       --> github.com/letsgo-framework/letsgo/controllers.GetCredentials (4 handlers)
+[GIN-debug] GET    /api/v1/token             --> github.com/letsgo-framework/letsgo/controllers.GetToken (4 handlers)
+[GIN-debug] GET    /api/v1/auth/             --> github.com/letsgo-framework/letsgo/controllers.Verify (5 handlers)
+[GIN-debug] GET    /ws                       --> github.com/letsgo-framework/letsgo/routes.PaveRoutes.func3 (4 handlers)
+[GIN-debug] Listening and serving HTTP on :8000
