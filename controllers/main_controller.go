@@ -15,8 +15,8 @@ type Welcome struct {
 func Home(c *gin.Context) {
 	var welcome Welcome
 	welcome.Greet = `Welcome to letsGo`
-	welcome.Doc = `Link to readme`
-	welcome.Github = `Link to github`
+	welcome.Doc = `https://letsgo-framework.github.io/`
+	welcome.Github = `https://github.com/letsgo-framework/letsgo`
 	welcome.Examples = `Link To examples`
 	c.JSON(200, welcome)
 	c.Done()
