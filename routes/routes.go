@@ -14,9 +14,9 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-oauth2/gin-server"
-	"github.com/letsGo/controllers"
-	"github.com/letsGo/gql"
-	"github.com/letsGo/helpers"
+	"github.com/letsgo-framework/letsgo/controllers"
+	"github.com/letsgo-framework/letsgo/gql"
+	"github.com/letsgo-framework/letsgo/helpers"
 )
 
 func PaveRoutes() *gin.Engine {

@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
-	"github.com/letsGo/gql/queries"
+	"github.com/letsgo-framework/letsgo/gql/queries"
 	"log"
 )
 

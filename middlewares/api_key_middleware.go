@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/letsGo/helpers"
+	"github.com/letsgo-framework/letsgo/helpers"
 	"log"
 	"os"
 )
