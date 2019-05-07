@@ -17,7 +17,7 @@
 - [cors] ( github.com/gin-contrib/cors )
 - [graphql] ( github.com/graphql-go/graphql )
 - [graphql-go/handler] ( github.com/graphql-go/handler )
-
+***
 ### Directory Structure
 
 By default, your project's structure will look like this:
@@ -30,14 +30,14 @@ By default, your project's structure will look like this:
 - `/routes`: directory contains RESTful api routes of your application.
 - `/tests`: contains tests of your application.
 - `/types`: contains the types/structures of your application.
-
+***
 ### Environment Configuration
 
 letsGo uses `godotenv` for setting environment variables. The root directory of your application will contain a `.env.example` file.
 copy and rename it to `.env` to set your environment variables.
 
 You need to create a `.env.testing` file from `.env.example` for running tests.
-
+***
 ### Setting up
 
 - clone letsGo
@@ -53,7 +53,6 @@ You need to create a `.env.testing` file from `.env.example` for running tests.
 go get github.com/letsgo-framework/letsgo-cli
 ```
 
-***
 
 ### Create a new project
 
@@ -63,17 +62,17 @@ letsgo-cli init <import_namespace> <project_name>
 
 - **letsgo-cli init github.com myapp**<br/>
   Generates a new project called **myapp** in your `GOPATH` inside `github.com` and installs the default plugins through the glide.
-
+***
 ### Run : ```go run main.go```
-
+***
 ### Build : ```go build```
-
+***
 ### Test : ```go test tests/main_test.go```
-
+***
 ### Authentication
 
 letsGo uses Go OAuth2 (https://godoc.org/golang.org/x/oauth2) for authentication.
-
+***
 #### Client Credential Grant
 - `/api/v1/credentials` : returns `CLIENT_ID` and `CLIENT_SECRET`
 - `/api/v1/token` : Send `CLIENT_ID`, `CLIENT_SECRET`, `grant_type` and `scope` to generate `access_token`
