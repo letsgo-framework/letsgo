@@ -19,6 +19,7 @@ import (
 	"github.com/letsgo-framework/letsgo/helpers"
 )
 
+// Setup all api routes
 func PaveRoutes() *gin.Engine {
 	r := gin.Default()
 

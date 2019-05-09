@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// The content below is only a placeholder and can be replaced.
+// Welcome!! The content below is only a placeholder and can be replaced.
 type Welcome struct {
 	Greet    string `json:"greet"`
 	Doc      string `json:"link_to_doc"`
@@ -12,6 +12,7 @@ type Welcome struct {
 	Examples string `json:"examples"`
 }
 
+// Response for api/v1
 func Home(c *gin.Context) {
 	var welcome Welcome
 	welcome.Greet = `Welcome to letsGo`

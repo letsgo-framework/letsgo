@@ -23,9 +23,12 @@ import (
 	"time"
 )
 
+// Mongo Database
 var DB *mongo.Database
+// Mongo Client
 var Client *mongo.Client
 
+// Connect to database
 func Connect() (*mongo.Client, *mongo.Database) {
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
@@ -49,6 +52,7 @@ func Connect() (*mongo.Client, *mongo.Database) {
 	return Client, DB
 }
 
+// Connect to database while testing
 func TestConnect() (*mongo.Client, *mongo.Database) {
 	err := godotenv.Load("../.env.testing")
 	dbURL := os.Getenv("DATABASE_URL")

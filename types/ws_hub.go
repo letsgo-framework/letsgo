@@ -16,7 +16,7 @@ type Hub struct {
 	Unregister chan *Client
 }
 
-// goroutine for websocket
+// Run is goroutine for websocket
 func (h *Hub) Run() {
 	for {
 		select {
