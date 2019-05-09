@@ -9,6 +9,8 @@ git:
 before_script:
   - curl https://glide.sh/get | sh
   - glide install
+  - cp .env.example .env
+  - cp .env.example .env.testing
 
 script:
   - go test ./tests/main_test.go
