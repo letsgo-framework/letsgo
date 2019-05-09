@@ -4,6 +4,6 @@ package types
 type TokenResponse struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   string `json:"expires_in"`
-	Scope        string `json:"scope"`
+	Scope       string `json:"scope"`
 	TokenType   string `json:"token_type"`
 }
