@@ -1,5 +1,5 @@
 # letsGO
-
+[![Build Status](https://travis-ci.org/letsgo-framework/letsgo.svg?branch=master)](https://travis-ci.org/letsgo-framework/letsgo)
 ## Go api starter
 
 
