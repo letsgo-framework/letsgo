@@ -3,3 +3,4 @@ vendor/
 .env
 .env.testing
 letsgo
+log/letsgo.log
