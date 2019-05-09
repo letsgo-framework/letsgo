@@ -12,6 +12,7 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 }
 
+// ServeWebsocket starts websocket
 func ServeWebsocket(hub *types.Hub, w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -28,6 +29,7 @@ func ServeWebsocket(hub *types.Hub, w http.ResponseWriter, r *http.Request) {
 
 }
 
+// NewHub created new Hub
 func NewHub() *types.Hub {
 	return &types.Hub{
 		Broadcast:  make(chan []byte),

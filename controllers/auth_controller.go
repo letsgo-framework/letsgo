@@ -23,6 +23,7 @@ import (
 var clientStore = store.NewClientStore()
 var manager = manage.NewDefaultManager()
 
+// AuthInit initializes authentication
 func AuthInit() {
 	manager.SetAuthorizeCodeTokenCfg(manage.DefaultAuthorizeCodeTokenCfg)
 
@@ -36,6 +37,7 @@ func AuthInit() {
 	ginserver.SetClientInfoHandler(server.ClientFormHandler)
 }
 
+// GetCredentials sends client credentials
 func GetCredentials(c *gin.Context) {
 	clientId := uuid.New().String()
 	clientSecret := uuid.New().String()
@@ -51,10 +53,12 @@ func GetCredentials(c *gin.Context) {
 	c.Done()
 }
 
+// GetToken sends accecc_token
 func GetToken(c *gin.Context) {
 	ginserver.HandleTokenRequest(c)
 }
 
+// Verify accessToken with client
 func Verify(c *gin.Context) {
 	ti, exists := c.Get(ginserver.DefaultConfig.TokenKey)
 	if exists {

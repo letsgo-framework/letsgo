@@ -153,7 +153,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/auth?access_token=" + tokenResponse.Access_token
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/auth?access_token=" + tokenResponse.AccessToken
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 
