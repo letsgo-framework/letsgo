@@ -11,4 +11,4 @@ before_script:
   - glide install
 
 script:
-  -go test ./tests/main_test.go
+  - go test ./tests/main_test.go
