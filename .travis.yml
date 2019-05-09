@@ -3,12 +3,13 @@ language: go
 go:
   - 1.11.x
 
+services:
+  - mongodb
+
 git:
   depth: 1
 
 before_script:
-  - curl https://glide.sh/get | sh
-  - glide install
   - cp .env.example .env
   - cp .env.example .env.testing
 
