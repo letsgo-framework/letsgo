@@ -55,7 +55,7 @@ func (s *TestSuite) TestGetEnv(c *C) {
 
 
 func (s *TestSuite) TestNoApiToken(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
 	resp, err := http.Get(requestURL)
 	if err != nil {
 		c.Error(err)
@@ -66,7 +66,7 @@ func (s *TestSuite) TestNoApiToken(c *C) {
 }
 
 func (s *TestSuite) TestApiTokenMismatch(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,`lablabla`)
@@ -80,7 +80,7 @@ func (s *TestSuite) TestApiTokenMismatch(c *C) {
 }
 
 func (s *TestSuite) TestHelloWorld(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -95,7 +95,7 @@ func (s *TestSuite) TestHelloWorld(c *C) {
 
 
 func (s *TestSuite) TestCredentials(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -109,7 +109,7 @@ func (s *TestSuite) TestCredentials(c *C) {
 }
 
 func (s *TestSuite) TestTokenSuccess(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -123,7 +123,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1:8084/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
+	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -137,7 +137,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 }
 
 func (s *TestSuite) TestTokenFail(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/token"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -151,7 +151,7 @@ func (s *TestSuite) TestTokenFail(c *C) {
 }
 
 func (s *TestSuite) TestAccessTokenSuccess(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -165,7 +165,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1:8084/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
+	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -180,7 +180,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
-	requestURL = "http://127.0.0.1:8084/api/v1/auth?access_token="+tokenResponse.Access_token
+	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/auth?access_token="+tokenResponse.Access_token
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -197,7 +197,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 
 
 func (s *TestSuite) TestAccessTokenFail(c *C) {
-	requestURL := "http://127.0.0.1:8084/api/v1/credentials/"
+	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -211,7 +211,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1:8084/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
+	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
@@ -226,7 +226,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
-	requestURL = "http://127.0.0.1:8084/api/v1/auth?access_token=mywrongaccesstoken"
+	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/auth?access_token=mywrongaccesstoken"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
