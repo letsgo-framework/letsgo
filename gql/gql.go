@@ -8,6 +8,7 @@ import (
 	"log"
 )
 
+// Represents rootquery gor graphql
 var RootQuery = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootQuery",
 	Fields: graphql.Fields{
@@ -15,6 +16,7 @@ var RootQuery = graphql.NewObject(graphql.ObjectConfig{
 	},
 })
 
+// Initialize gql package and expose graphql routes
 func InitGraphql(r *gin.Engine) {
 
 	schemaConfig := graphql.SchemaConfig{Query: RootQuery}
