@@ -33,7 +33,9 @@ func Connect() (*mongo.Client, *mongo.Database) {
 		dbPort := os.Getenv("DATABASE_PORT")
 		dbURL = fmt.Sprintf("mongodb://%s:%s", dbHost, dbPort)
 	}
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbURL))
 	Client = client
 	err = Client.Ping(context.Background(), readpref.Primary())
@@ -55,7 +57,8 @@ func TestConnect() (*mongo.Client, *mongo.Database) {
 		dbPort := os.Getenv("DATABASE_PORT")
 		dbURL = fmt.Sprintf("mongodb://%s:%s", dbHost, dbPort)
 	}
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbURL))
 	Client = client
 	DB = Client.Database(os.Getenv("DATABASE"))
