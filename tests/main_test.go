@@ -54,17 +54,6 @@ func (s *TestSuite) TestGetEnv(c *C) {
 }
 
 
-func (s *TestSuite) TestNoApiToken(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
-	resp, err := http.Get(requestURL)
-	if err != nil {
-		c.Error(err)
-		c.Fail()
-	}
-	defer resp.Body.Close()
-	c.Assert(resp.StatusCode, Equals, 401)
-}
-
 func (s *TestSuite) TestHelloWorld(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
 	client := &http.Client{}
