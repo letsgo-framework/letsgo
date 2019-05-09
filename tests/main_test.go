@@ -65,25 +65,11 @@ func (s *TestSuite) TestNoApiToken(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
-func (s *TestSuite) TestApiTokenMismatch(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,`lablabla`)
-	resp, err := client.Do(req)
-	if err != nil {
-		c.Error(err)
-		c.Fail()
-	}
-	defer resp.Body.Close()
-	c.Assert(resp.StatusCode, Equals, 401)
-}
-
 func (s *TestSuite) TestHelloWorld(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err := client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -98,7 +84,7 @@ func (s *TestSuite) TestCredentials(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err := client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -112,7 +98,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err := client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -126,7 +112,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err = client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -140,7 +126,7 @@ func (s *TestSuite) TestTokenFail(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err := client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -154,7 +140,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err := client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -168,7 +154,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err = client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -183,7 +169,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/auth?access_token="+tokenResponse.Access_token
 
 	req, err = http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err = client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -200,7 +186,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err := client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -214,7 +200,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err = client.Do(req)
 	if err != nil {
 		c.Error(err)
@@ -229,7 +215,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/auth?access_token=mywrongaccesstoken"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
-	req.Header.Set(`X_API_KEY`,os.Getenv("X_API_KEY"))
+
 	resp, err = client.Do(req)
 	if err != nil {
 		c.Error(err)
