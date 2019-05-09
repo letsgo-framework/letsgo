@@ -59,6 +59,9 @@ func Connect() (*mongo.Client, *mongo.Database) {
 // TestConnect to database while testing
 func TestConnect() (*mongo.Client, *mongo.Database) {
 	err := godotenv.Load("../.env.testing")
+	if err != nil {
+		log.Fatal("Error loading .env.testing file")
+	}
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
 		dbHost := os.Getenv("DATABASE_HOST")
