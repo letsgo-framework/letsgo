@@ -41,6 +41,9 @@ func Connect() (*mongo.Client, *mongo.Database) {
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbURL))
+	if err != nil {
+		log.Fatal(err)
+	}
 	Client = client
 	err = Client.Ping(context.Background(), readpref.Primary())
 	if err == nil {
