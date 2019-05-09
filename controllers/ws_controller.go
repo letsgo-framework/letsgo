@@ -36,4 +36,3 @@ func NewHub() *types.Hub {
 		Clients:    make(map[*types.Client]bool),
 	}
 }
-

@@ -15,7 +15,7 @@ var RootQuery = graphql.NewObject(graphql.ObjectConfig{
 	},
 })
 
-func InitGraphql(r *gin.Engine)  {
+func InitGraphql(r *gin.Engine) {
 
 	schemaConfig := graphql.SchemaConfig{Query: RootQuery}
 	schema, err := graphql.NewSchema(schemaConfig)

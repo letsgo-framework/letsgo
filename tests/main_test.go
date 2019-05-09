@@ -23,7 +23,7 @@ type TestInsert struct {
 	Name string `form:"name" binding:"required" json:"name" bson:"name"`
 }
 
-type TestSuite struct{
+type TestSuite struct {
 	srv *gin.Engine
 }
 
@@ -45,7 +45,7 @@ func TestMain(m *testing.M) {
 func (s *TestSuite) TestGetEnv(c *C) {
 
 	dbPort := os.Getenv("DATABASE_PORT")
-	fmt.Printf("db port %s",dbPort)
+	fmt.Printf("db port %s", dbPort)
 	if dbPort == "" {
 		c.Error()
 		c.Fail()
@@ -53,9 +53,8 @@ func (s *TestSuite) TestGetEnv(c *C) {
 	c.Assert(dbPort, Equals, "27017")
 }
 
-
 func (s *TestSuite) TestHelloWorld(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 
@@ -68,9 +67,8 @@ func (s *TestSuite) TestHelloWorld(c *C) {
 	c.Assert(resp.StatusCode, Equals, 200)
 }
 
-
 func (s *TestSuite) TestCredentials(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 
@@ -84,7 +82,7 @@ func (s *TestSuite) TestCredentials(c *C) {
 }
 
 func (s *TestSuite) TestTokenSuccess(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 
@@ -98,7 +96,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 
@@ -112,7 +110,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 }
 
 func (s *TestSuite) TestTokenFail(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 
@@ -126,7 +124,7 @@ func (s *TestSuite) TestTokenFail(c *C) {
 }
 
 func (s *TestSuite) TestAccessTokenSuccess(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 
@@ -140,7 +138,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 
@@ -155,7 +153,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
-	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/auth?access_token="+tokenResponse.Access_token
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/auth?access_token=" + tokenResponse.Access_token
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 
@@ -165,14 +163,12 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 		c.Fail()
 	}
 	defer resp.Body.Close()
-
 
 	c.Assert(resp.StatusCode, Equals, 200)
 }
 
-
 func (s *TestSuite) TestAccessTokenFail(c *C) {
-	requestURL := "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/credentials/"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", requestURL, nil)
 
@@ -186,7 +182,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/token?grant_type=client_credentials&client_id="+credResponse.CLIENT_ID+"&client_secret="+credResponse.CLIENT_SECRET+"&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 
@@ -201,7 +197,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
-	requestURL = "http://127.0.0.1"+os.Getenv("PORT")+"/api/v1/auth?access_token=mywrongaccesstoken"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/auth?access_token=mywrongaccesstoken"
 
 	req, err = http.NewRequest("GET", requestURL, nil)
 
@@ -211,7 +207,6 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 		c.Fail()
 	}
 	defer resp.Body.Close()
-
 
 	c.Assert(resp.StatusCode, Equals, 401)
 }

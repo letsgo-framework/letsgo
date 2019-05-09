@@ -8,4 +8,3 @@ var Hello = &graphql.Field{
 		return "letsGo", nil
 	},
 }
-

@@ -19,6 +19,7 @@ import (
 	"gopkg.in/oauth2.v3/server"
 	"gopkg.in/oauth2.v3/store"
 )
+
 var clientStore = store.NewClientStore()
 var manager = manage.NewDefaultManager()
 
@@ -54,7 +55,7 @@ func GetToken(c *gin.Context) {
 	ginserver.HandleTokenRequest(c)
 }
 
-func Verify (c *gin.Context) {
+func Verify(c *gin.Context) {
 	ti, exists := c.Get(ginserver.DefaultConfig.TokenKey)
 	if exists {
 		c.JSON(200, ti)
