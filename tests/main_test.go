@@ -56,7 +56,7 @@ func (s *TestSuite) TestGetEnv(c *C) {
 func (s *TestSuite) TestHelloWorld(c *C) {
 	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/"
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, _ := http.NewRequest("GET", requestURL, nil)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -70,7 +70,7 @@ func (s *TestSuite) TestHelloWorld(c *C) {
 func (s *TestSuite) TestCredentials(c *C) {
 	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, _ := http.NewRequest("GET", requestURL, nil)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -84,7 +84,7 @@ func (s *TestSuite) TestCredentials(c *C) {
 func (s *TestSuite) TestTokenSuccess(c *C) {
 	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, _ := http.NewRequest("GET", requestURL, nil)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -92,13 +92,13 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 		c.Fail()
 	}
 	defer resp.Body.Close()
-	responseData, err := ioutil.ReadAll(resp.Body)
+	responseData, _ := ioutil.ReadAll(resp.Body)
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
 	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
-	req, err = http.NewRequest("GET", requestURL, nil)
+	req, _ = http.NewRequest("GET", requestURL, nil)
 
 	resp, err = client.Do(req)
 	if err != nil {
@@ -112,7 +112,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 func (s *TestSuite) TestTokenFail(c *C) {
 	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token"
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, _ := http.NewRequest("GET", requestURL, nil)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -126,7 +126,7 @@ func (s *TestSuite) TestTokenFail(c *C) {
 func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, _ := http.NewRequest("GET", requestURL, nil)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -134,13 +134,13 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 		c.Fail()
 	}
 	defer resp.Body.Close()
-	responseData, err := ioutil.ReadAll(resp.Body)
+	responseData, _ := ioutil.ReadAll(resp.Body)
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
 	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
-	req, err = http.NewRequest("GET", requestURL, nil)
+	req, _ = http.NewRequest("GET", requestURL, nil)
 
 	resp, err = client.Do(req)
 	if err != nil {
@@ -149,13 +149,13 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	}
 	defer resp.Body.Close()
 
-	respData, err := ioutil.ReadAll(resp.Body)
+	respData, _ := ioutil.ReadAll(resp.Body)
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
 	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/auth?access_token=" + tokenResponse.AccessToken
 
-	req, err = http.NewRequest("GET", requestURL, nil)
+	req, _ = http.NewRequest("GET", requestURL, nil)
 
 	resp, err = client.Do(req)
 	if err != nil {
@@ -170,7 +170,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 func (s *TestSuite) TestAccessTokenFail(c *C) {
 	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/credentials/"
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, _ := http.NewRequest("GET", requestURL, nil)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -178,13 +178,13 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 		c.Fail()
 	}
 	defer resp.Body.Close()
-	responseData, err := ioutil.ReadAll(resp.Body)
+	responseData, _ := ioutil.ReadAll(resp.Body)
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
 	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
-	req, err = http.NewRequest("GET", requestURL, nil)
+	req, _ = http.NewRequest("GET", requestURL, nil)
 
 	resp, err = client.Do(req)
 	if err != nil {
@@ -193,13 +193,13 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	}
 	defer resp.Body.Close()
 
-	respData, err := ioutil.ReadAll(resp.Body)
+	respData, _ := ioutil.ReadAll(resp.Body)
 	var tokenResponse types.TokenResponse
 	json.Unmarshal(respData, &tokenResponse)
 
 	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/auth?access_token=mywrongaccesstoken"
 
-	req, err = http.NewRequest("GET", requestURL, nil)
+	req, _ = http.NewRequest("GET", requestURL, nil)
 
 	resp, err = client.Do(req)
 	if err != nil {
