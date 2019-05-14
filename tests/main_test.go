@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/letsgo-framework/letsgo/database"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"github.com/letsgo-framework/letsgo/routes"
 	"github.com/letsgo-framework/letsgo/types"
 	"go.mongodb.org/mongo-driver/bson"
@@ -31,6 +32,10 @@ var _ = Suite(&TestSuite{})
 
 func (s *TestSuite) SetUpTest(c *C) {
 	err := godotenv.Load("../.env.testing")
+
+	// Setup log writing
+	letslog.InitLogFuncs()
+
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}

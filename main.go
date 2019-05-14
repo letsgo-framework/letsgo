@@ -12,7 +12,10 @@ func main() {
 
 	// Load env
 	err := godotenv.Load()
+
+	// Setup log writing
 	letslog.InitLogFuncs()
+
 	if err != nil {
 		letslog.Error("Error loading .env file")
 	} else {
