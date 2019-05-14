@@ -22,3 +22,4 @@ import:
   version: ~0.2.3
 - package: gopkg.in/natefinch/lumberjack.v2
   version: ~2.1.0
+- package: github.com/pilu/fresh

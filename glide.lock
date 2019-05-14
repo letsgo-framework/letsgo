@@ -1,5 +1,5 @@
-hash: 839c6d66c771e3efb51df97348d29c16de8f8e237834aef984c768805af270fc
-updated: 2019-05-07T16:57:40.49597554+05:30
+hash: 828ae44b924f4b0ff5e23af50d0f115f38df8587ae7c5750bf80b0b2aeac8bc8
+updated: 2019-05-13T11:21:19.678787895+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -52,6 +52,8 @@ imports:
   version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
 - name: github.com/modern-go/reflect2
   version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
+- name: github.com/pilu/fresh
+  version: 9c0092493eff2825c3abf64e087b3383dec939c3
 - name: github.com/tidwall/btree
   version: 9876f1454cf0993a53d74c27196993e345f50dd1
 - name: github.com/tidwall/buntdb
