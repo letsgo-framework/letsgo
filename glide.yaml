@@ -23,3 +23,5 @@ import:
 - package: gopkg.in/natefinch/lumberjack.v2
   version: ~2.1.0
 - package: github.com/pilu/fresh
+- package: github.com/mattn/go-colorable
+  version: ~0.1.1

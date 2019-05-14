@@ -5,7 +5,7 @@ import (
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 	"github.com/letsgo-framework/letsgo/gql/queries"
-	"log"
+	letslog "github.com/letsgo-framework/letsgo/log"
 )
 
 // RootQuery represents rootquery gor graphql
@@ -22,7 +22,7 @@ func InitGraphql(r *gin.Engine) {
 	schemaConfig := graphql.SchemaConfig{Query: RootQuery}
 	schema, err := graphql.NewSchema(schemaConfig)
 	if err != nil {
-		log.Fatalf("failed to create new schema, error: %v", err)
+		letslog.Error("failed to create new schema, error: %v", err)
 	}
 	h := handler.New(&handler.Config{
 		Schema:     &schema,

@@ -1,5 +1,5 @@
-hash: 828ae44b924f4b0ff5e23af50d0f115f38df8587ae7c5750bf80b0b2aeac8bc8
-updated: 2019-05-13T11:21:19.678787895+05:30
+hash: 49b33cccbb7756504bca5a1eadd5baa2843715d4b3948b74e4d6b42118422ea6
+updated: 2019-05-14T08:06:56.314030824+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -46,6 +46,8 @@ imports:
   version: 23d116af351c84513e1946b527c88823e476be13
 - name: github.com/json-iterator/go
   version: 0ff49de124c6f76f8494e194af75bde0f1a49a29
+- name: github.com/mattn/go-colorable
+  version: 3a70a971f94a22f2fa562ffcc7a0eb45f5daf045
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/modern-go/concurrent

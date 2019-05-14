@@ -10,10 +10,10 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-oauth2/gin-server"
 	"github.com/google/uuid"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"gopkg.in/oauth2.v3/manage"
 	"gopkg.in/oauth2.v3/models"
 	"gopkg.in/oauth2.v3/server"
@@ -47,7 +47,7 @@ func GetCredentials(c *gin.Context) {
 		Domain: "http://localhost:8000",
 	})
 	if err != nil {
-		fmt.Println(err.Error())
+		letslog.Error(err.Error())
 	}
 	c.JSON(200, map[string]string{"CLIENT_ID": clientId, "CLIENT_SECRET": clientSecret})
 	c.Done()
