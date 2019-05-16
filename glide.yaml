@@ -25,3 +25,11 @@ import:
 - package: github.com/pilu/fresh
 - package: github.com/mattn/go-colorable
   version: ~0.1.1
+- package: github.com/swaggo/swag
+  version: ~1.5.0
+  subpackages:
+  - cmd/swag
+- package: github.com/swaggo/gin-swagger
+  version: ~1.1.0
+  subpackages:
+  - swaggerFiles

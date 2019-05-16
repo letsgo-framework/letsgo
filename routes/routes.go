@@ -17,11 +17,19 @@ import (
 	"github.com/letsgo-framework/letsgo/controllers"
 	"github.com/letsgo-framework/letsgo/gql"
 	"github.com/letsgo-framework/letsgo/helpers"
+
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+
+	_ "github.com/letsgo-framework/letsgo/docs"
 )
 
 // PaveRoutes sets up all api routes
 func PaveRoutes() *gin.Engine {
 	r := gin.Default()
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 
 	// websocket setup
 	hub := controllers.NewHub()
