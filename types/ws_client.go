@@ -3,7 +3,7 @@ package types
 import (
 	"bytes"
 	"github.com/gorilla/websocket"
-	"log"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"time"
 )
 
@@ -54,7 +54,7 @@ func (c *Client) ReadPump() {
 		_, message, err := c.Conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				log.Printf("error: %v", err)
+				letslog.Error("error: %v", err)
 			}
 			break
 		}

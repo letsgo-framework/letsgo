@@ -81,3 +81,14 @@ letsGo uses Go OAuth2 (https://godoc.org/golang.org/x/oauth2) for authentication
 
 
 
+### Deploy into Docker
+
+```
+sudo docker run --rm -v "$PWD":/go/src/github.com/letsgo-framework/letsgo -w /go/src/github.com/letsgo-framework/letsgo iron/go:dev go build -o letsgo
+```
+```
+sudo docker build -t sab94/letsgo .
+```
+```
+sudo docker run --rm -p 8080:8080 sab94/letsgo
+```

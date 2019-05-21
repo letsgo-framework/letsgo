@@ -50,7 +50,8 @@ func PaveRoutes() *gin.Engine {
 	{
 		v1.GET("/", controllers.Home)
 		v1.GET("/credentials", controllers.GetCredentials)
-		v1.GET("/token", controllers.GetToken)
+		v1.GET("/login", controllers.GetToken)
+		v1.POST("/register", controllers.Register)
 		auth := v1.Group("auth")
 		{
 			auth.Use(ginserver.HandleTokenVerify(config))

@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/gorilla/websocket"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"github.com/letsgo-framework/letsgo/types"
-	"log"
 	"net/http"
 )
 
@@ -16,7 +16,7 @@ var upgrader = websocket.Upgrader{
 func ServeWebsocket(hub *types.Hub, w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		log.Println(err)
+		letslog.Error(err.Error())
 		return
 	}
 	client := &types.Client{Hub: hub, Conn: conn, Send: make(chan []byte, 256)}

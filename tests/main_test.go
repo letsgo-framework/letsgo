@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/letsgo-framework/letsgo/database"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"github.com/letsgo-framework/letsgo/routes"
 	"github.com/letsgo-framework/letsgo/types"
 	"go.mongodb.org/mongo-driver/bson"
@@ -31,6 +32,10 @@ var _ = Suite(&TestSuite{})
 
 func (s *TestSuite) SetUpTest(c *C) {
 	err := godotenv.Load("../.env.testing")
+
+	// Setup log writing
+	letslog.InitLogFuncs()
+
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -96,7 +101,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, _ = http.NewRequest("GET", requestURL, nil)
 
@@ -110,7 +115,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 }
 
 func (s *TestSuite) TestTokenFail(c *C) {
-	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login"
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", requestURL, nil)
 
@@ -138,7 +143,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, _ = http.NewRequest("GET", requestURL, nil)
 
@@ -182,7 +187,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, _ = http.NewRequest("GET", requestURL, nil)
 

@@ -3,29 +3,23 @@ package main
 import (
 	"github.com/joho/godotenv"
 	"github.com/letsgo-framework/letsgo/database"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"github.com/letsgo-framework/letsgo/routes"
-	"gopkg.in/natefinch/lumberjack.v2"
-	"log"
 	"os"
 )
 
 func main() {
 
-	// Configure Logging
-	log.SetOutput(&lumberjack.Logger{
-		Filename:   "./log/letsgo.log",
-		MaxSize:    500, // megabytes
-		MaxBackups: 3,
-		MaxAge:     28,   //days
-		Compress:   true, // disabled by default
-	})
-
 	// Load env
 	err := godotenv.Load()
+
+	// Setup log writing
+	letslog.InitLogFuncs()
+
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		letslog.Error("Error loading .env file")
 	} else {
-		log.Println("env loaded")
+		letslog.Info("env loaded")
 	}
 
 	database.Connect()

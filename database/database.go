@@ -15,10 +15,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/joho/godotenv"
+	letslog "github.com/letsgo-framework/letsgo/log"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
-	"log"
 	"os"
 	"time"
 )
@@ -42,14 +42,14 @@ func Connect() (*mongo.Client, *mongo.Database) {
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbURL))
 	if err != nil {
-		log.Fatal(err)
+		letslog.Fatal(err)
 	}
 	Client = client
 	err = Client.Ping(context.Background(), readpref.Primary())
 	if err == nil {
-		log.Println("Connected to MongoDB!")
+		letslog.Info("Connected to MongoDB!")
 	} else {
-		log.Fatalln("Could not connect to MongoDB! Please check if mongo is running.")
+		letslog.Error("Could not connect to MongoDB! Please check if mongo is running.")
 	}
 	DB = Client.Database(os.Getenv("DATABASE"))
 
@@ -60,7 +60,7 @@ func Connect() (*mongo.Client, *mongo.Database) {
 func TestConnect() (*mongo.Client, *mongo.Database) {
 	err := godotenv.Load("../.env.testing")
 	if err != nil {
-		log.Fatal("Error loading .env.testing file")
+		letslog.Error("Error loading .env.testing file")
 	}
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
@@ -74,13 +74,13 @@ func TestConnect() (*mongo.Client, *mongo.Database) {
 	Client = client
 	DB = Client.Database(os.Getenv("DATABASE"))
 	if err != nil {
-		log.Fatal(err)
+		letslog.Fatal(err)
 	}
 	err = Client.Ping(context.Background(), readpref.Primary())
 	if err == nil {
-		fmt.Println("Connected to MongoDB for testing!")
+		letslog.Info("Connected to MongoDB for testing!")
 	} else {
-		fmt.Println("Could not connect to MongoDB!")
+		letslog.Error("Could not connect to MongoDB!")
 	}
 
 	return Client, DB
