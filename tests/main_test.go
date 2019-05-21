@@ -101,7 +101,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, _ = http.NewRequest("GET", requestURL, nil)
 
@@ -115,7 +115,7 @@ func (s *TestSuite) TestTokenSuccess(c *C) {
 }
 
 func (s *TestSuite) TestTokenFail(c *C) {
-	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token"
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login"
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", requestURL, nil)
 
@@ -143,7 +143,7 @@ func (s *TestSuite) TestAccessTokenSuccess(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, _ = http.NewRequest("GET", requestURL, nil)
 
@@ -187,7 +187,7 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	var credResponse types.CredentialResponse
 	json.Unmarshal(responseData, &credResponse)
 
-	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/token?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
+	requestURL = "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=client_credentials&client_id=" + credResponse.CLIENT_ID + "&client_secret=" + credResponse.CLIENT_SECRET + "&scope=read"
 
 	req, _ = http.NewRequest("GET", requestURL, nil)
 
