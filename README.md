@@ -1,4 +1,4 @@
-# letsGO
+# letsgo
 [![Build Status](https://travis-ci.org/letsgo-framework/letsgo.svg?branch=master)](https://travis-ci.org/letsgo-framework/letsgo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/letsgo-framework/letsgo)](https://goreportcard.com/report/github.com/letsgo-framework/letsgo)
 ## Go api starter
@@ -72,14 +72,8 @@ letsgo-cli init <import_namespace> <project_name>
 ***
 ### Authentication
 
-letsGo uses Go OAuth2 (https://godoc.org/golang.org/x/oauth2) for authentication.
+letsgo uses Go OAuth2 (https://godoc.org/golang.org/x/oauth2) for authentication.
 ***
-#### Client Credential Grant
-- `/api/v1/credentials` : returns `CLIENT_ID` and `CLIENT_SECRET`
-- `/api/v1/token` : Send `CLIENT_ID`, `CLIENT_SECRET`, `grant_type` and `scope` to generate `access_token`
-- Any route starting with `/api/v1/auth/` needs `Authorization` Header with the `Bearer access_token`
-
-
 
 ### Deploy into Docker
 
