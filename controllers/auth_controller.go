@@ -91,7 +91,7 @@ func Verify(c *gin.Context) {
 func Register (c *gin.Context) {
 	a := types.User{}
 	ctx := context.Background()
-	collection := database.DB.Collection("users")
+	collection := database.UserCollection()
 	err := c.BindJSON(&a)
 	a.Password,_ = generateHash(a.Password)
 	a.Id = primitive.NewObjectID()
@@ -130,10 +130,9 @@ func compare(hash string, s string) error {
 	return bcrypt.CompareHashAndPassword(existing, incoming)
 }
 
-
 func login (username, password string) (userID string, err error) {
 
-	collection := database.DB.Collection("users")
+	collection := database.UserCollection()
 
 	user := types.User{}
 	err = collection.FindOne(context.Background(), bson.M{"username": username}).Decode(&user)
@@ -151,6 +150,28 @@ func login (username, password string) (userID string, err error) {
 		userID = user.Id.Hex()
 		return userID, err
 	}
+}
 
+// Returns ObjectId of logged in user
+func AuthId(c *gin.Context) (primitive.ObjectID, error) {
+	ti, _ := c.Get(ginserver.DefaultConfig.TokenKey)
+	token := ti.(*models.Token)
+	return primitive.ObjectIDFromHex(token.UserID)
+}
 
+// Returns Client of the logged in user
+func AuthClient(c *gin.Context) string {
+	ti, _ := c.Get(ginserver.DefaultConfig.TokenKey)
+	token := ti.(*models.Token)
+	return token.ClientID
+}
+
+// Returns logged in user
+func AuthUser(c *gin.Context) (types.User, error) {
+	id, _ := AuthId(c)
+	user := types.User{}
+	collection := database.UserCollection()
+	err := collection.FindOne(context.Background(), bson.M{"_id": id}).Decode(&user)
+
+	return user, err
 }
