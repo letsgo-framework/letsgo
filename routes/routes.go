@@ -22,10 +22,6 @@ import (
 func PaveRoutes() *gin.Engine {
 	r := gin.Default()
 
-	// websocket setup
-	hub := controllers.NewHub()
-	go hub.Run()
-
 	// CORS
 	r.Use(cors.Default())
 
@@ -41,11 +37,6 @@ func PaveRoutes() *gin.Engine {
 		v1.GET("/", controllers.Greet)
 		auth := AuthRoutes(v1)
 		auth.GET("/", controllers.Verify)
-		// websocket route
-		r.GET("/ws", func(c *gin.Context) {
-			controllers.ServeWebsocket(hub, c.Writer, c.Request)
-		})
-
 	}
 
 	return r
