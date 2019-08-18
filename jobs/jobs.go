@@ -9,6 +9,7 @@ func Run() *cron.Cron {
 
 	// Add Jobs here
 	c.AddFunc("@every 1m", Greet)
+	c.AddFunc("@every 1m", GreetingMail)
 
 	c.Start()
 	return c
