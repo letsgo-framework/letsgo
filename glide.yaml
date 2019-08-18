@@ -25,3 +25,5 @@ import:
 - package: github.com/pilu/fresh
 - package: github.com/mattn/go-colorable
   version: ~0.1.1
+- package: github.com/robfig/cron
+  version: ~3.0.0

@@ -17,6 +17,7 @@ import (
 	"github.com/letsgo-framework/letsgo/controllers"
 	"github.com/letsgo-framework/letsgo/gql"
 	"github.com/letsgo-framework/letsgo/helpers"
+	"github.com/letsgo-framework/letsgo/jobs"
 )
 
 // PaveRoutes sets up all api routes
@@ -29,6 +30,9 @@ func PaveRoutes() *gin.Engine {
 
 	// CORS
 	r.Use(cors.Default())
+
+	// CRON
+	jobs.Run()
 
 	// Auth Init
 	controllers.AuthInit()

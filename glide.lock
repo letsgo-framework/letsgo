@@ -1,5 +1,5 @@
-hash: 49b33cccbb7756504bca5a1eadd5baa2843715d4b3948b74e4d6b42118422ea6
-updated: 2019-05-14T08:06:56.314030824+05:30
+hash: 61dd63078a63675ce735b397abd220cbd9b0ace14242bab65b0ef029088329bb
+updated: 2019-08-18T08:55:18.505758159+05:30
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
@@ -18,7 +18,7 @@ imports:
 - name: github.com/go-stack/stack
   version: 2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
 - name: github.com/golang/protobuf
-  version: 5831880292e721c76b58a16ecc60adc27d8e6355
+  version: 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
   subpackages:
   - proto
 - name: github.com/golang/snappy
@@ -47,7 +47,7 @@ imports:
 - name: github.com/json-iterator/go
   version: 0ff49de124c6f76f8494e194af75bde0f1a49a29
 - name: github.com/mattn/go-colorable
-  version: 3a70a971f94a22f2fa562ffcc7a0eb45f5daf045
+  version: 8029fb3788e5a4a9c00e415f586a6d033f5d38b3
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/modern-go/concurrent
@@ -56,6 +56,8 @@ imports:
   version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
 - name: github.com/pilu/fresh
   version: 9c0092493eff2825c3abf64e087b3383dec939c3
+- name: github.com/robfig/cron
+  version: 45fbe1491cdd47d74d1bf1396286d67faee8b8b5
 - name: github.com/tidwall/btree
   version: 9876f1454cf0993a53d74c27196993e345f50dd1
 - name: github.com/tidwall/buntdb
@@ -83,7 +85,7 @@ imports:
 - name: github.com/xdg/stringprep
   version: 73f8eece6fdcd902c185bf651de50f3828bed5ed
 - name: go.mongodb.org/mongo-driver
-  version: fd38aea397a6b7fdd52b5528e4cfd683821e7b39
+  version: 0d1270edf53072da4da781b76d2e1db58831152f
   subpackages:
   - bson
   - bson/bsoncodec
@@ -118,7 +120,13 @@ imports:
 - name: golang.org/x/crypto
   version: a8fb68e7206f8c78be19b432c58eb52a6aa34462
   subpackages:
+  - bcrypt
+  - blowfish
   - pbkdf2
+- name: golang.org/x/net
+  version: f4e77d36d62c17c2336347bb2670ddbd02d092b7
+  subpackages:
+  - context
 - name: golang.org/x/sync
   version: e225da77a7e68af35c70ccbf71af2b83e6acac3c
   subpackages:
