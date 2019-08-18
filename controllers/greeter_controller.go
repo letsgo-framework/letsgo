@@ -12,13 +12,15 @@ type Welcome struct {
 	Examples string `json:"examples"`
 }
 
-// Home is the response for api/v1
-func Home(c *gin.Context) {
-	var welcome Welcome
-	welcome.Greet = `Welcome to letsGo`
-	welcome.Doc = `https://letsgo-framework.github.io/`
-	welcome.Github = `https://github.com/letsgo-framework/letsgo`
-	welcome.Examples = `Link To examples`
+// Greet is the response for api/v1
+func Greet(c *gin.Context) {
+
+	welcome := Welcome{
+		Greet:    "Welcome to letsGo",
+		Doc:      "https://letsgo-framework.github.io/",
+		Github:   "https://github.com/letsgo-framework/letsgo",
+		Examples: "Coming Soon",
+	}
 	c.JSON(200, welcome)
 	c.Done()
 }

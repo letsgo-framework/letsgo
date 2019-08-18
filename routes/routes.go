@@ -38,7 +38,7 @@ func PaveRoutes() *gin.Engine {
 	// Grouped api
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/", controllers.Home)
+		v1.GET("/", controllers.Greet)
 		auth := AuthRoutes(v1)
 		auth.GET("/", controllers.Verify)
 		// websocket route
