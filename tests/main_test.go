@@ -216,8 +216,14 @@ func (s *TestSuite) TestAccessTokenFail(c *C) {
 	c.Assert(resp.StatusCode, Equals, 401)
 }
 
-func (s *TestSuite) TestDatabaseConnection(c *C) {
+func (s *TestSuite) TestDatabaseTestConnection(c *C) {
 	database.TestConnect()
+	err := database.Client.Ping(context.Background(), readpref.Primary())
+	c.Assert(err, Equals, nil)
+}
+
+func (s *TestSuite) TestDatabaseConnection(c *C) {
+	database.Connect()
 	err := database.Client.Ping(context.Background(), readpref.Primary())
 	c.Assert(err, Equals, nil)
 }
