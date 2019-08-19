@@ -1,6 +1,7 @@
 # letsgo
 [![Build Status](https://travis-ci.org/letsgo-framework/letsgo.svg?branch=master)](https://travis-ci.org/letsgo-framework/letsgo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/letsgo-framework/letsgo)](https://goreportcard.com/report/github.com/letsgo-framework/letsgo)
+[![Coverage Status](https://coveralls.io/repos/github/letsgo-framework/letsgo/badge.svg?branch=develop)](https://coveralls.io/github/letsgo-framework/letsgo?branch=develop)
 ## Go api starter
 
 
@@ -68,6 +69,13 @@ letsgo-cli init <import_namespace> <project_name>
 ### Build : ```go build```
 ***
 ### Test : ```go test tests/main_test.go```
+
+### Coverall :
+```
+go test -v -coverpkg=./... -coverprofile=coverage.out ./...
+
+goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+```
 ***
 ### Authentication
 

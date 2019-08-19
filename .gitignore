@@ -5,3 +5,4 @@ vendor/
 letsgo
 log/letsgo.log
 tmp/
+tests/log
