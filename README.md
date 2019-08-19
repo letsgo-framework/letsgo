@@ -25,7 +25,6 @@ By default, your project's structure will look like this:
 
 - `/controllers`: contains the core code of your application.
 - `/database`: contains mongo-go-driver connector.
-- `/gql`: contains graphql rootQuery, quires, mutations, types
 - `/helpers`: contains helpers functions of your application.
 - `/middlewares`: contains middlewares of your application.
 - `/routes`: directory contains RESTful api routes of your application.

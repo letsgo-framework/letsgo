@@ -14,7 +14,6 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/letsgo-framework/letsgo/controllers"
-	"github.com/letsgo-framework/letsgo/gql"
 	"github.com/letsgo-framework/letsgo/jobs"
 )
 
@@ -27,9 +26,6 @@ func PaveRoutes() *gin.Engine {
 
 	// CRON
 	jobs.Run()
-
-	// Graphql Init
-	gql.InitGraphql(r)
 
 	// Grouped api
 	v1 := r.Group("/api/v1")
