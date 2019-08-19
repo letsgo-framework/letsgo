@@ -30,6 +30,11 @@ func main() {
 	if port == "" {
 		port = ":8080"
 	}
-	srv.Run(port)
+
+	if os.Getenv("SERVE_TLS") == "true" {
+		srv.RunTLS(port,os.Getenv("CERTIFICATE_LOCATION"),"KEY_FILE_LOCATION")
+	} else {
+		srv.Run(port)
+	}
 
 }

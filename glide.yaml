@@ -12,16 +12,12 @@ import:
 - package: gopkg.in/oauth2.v3
   version: ~3.9.5
 - package: github.com/go-oauth2/gin-server
-- package: github.com/gorilla/websocket
-  version: ~1.4.0
 - package: github.com/gin-contrib/cors
   version: ~1.2.0
-- package: github.com/graphql-go/graphql
-  version: ~0.7.8
-- package: github.com/graphql-go/handler
-  version: ~0.2.3
 - package: gopkg.in/natefinch/lumberjack.v2
   version: ~2.1.0
 - package: github.com/pilu/fresh
 - package: github.com/mattn/go-colorable
   version: ~0.1.1
+- package: github.com/robfig/cron
+  version: ~3.0.0
