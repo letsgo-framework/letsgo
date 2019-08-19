@@ -1,7 +1,7 @@
 # letsgo
 [![Build Status](https://travis-ci.org/letsgo-framework/letsgo.svg?branch=master)](https://travis-ci.org/letsgo-framework/letsgo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/letsgo-framework/letsgo)](https://goreportcard.com/report/github.com/letsgo-framework/letsgo)
-[![Coverage Status](https://coveralls.io/repos/github/letsgo-framework/letsgo/badge.svg?branch=develop)](https://coveralls.io/github/letsgo-framework/letsgo?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/letsgo-framework/letsgo/badge.svg?branch=master)](https://coveralls.io/github/letsgo-framework/letsgo?branch=master)
 ## Go api starter
 
 
