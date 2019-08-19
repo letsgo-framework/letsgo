@@ -14,11 +14,8 @@
 - [oauth2] ( https://github.com/golang/oauth2 )
 - [check] ( https://godoc.org/gopkg.in/check.v1 )
 - [godotenv] ( https://github.com/joho/godotenv )
-- [websocket] ( https://github.com/gorilla/websocket )
 - [go-oauth2/gin-server] ( github.com/go-oauth2/gin-server )
 - [cors] ( github.com/gin-contrib/cors )
-- [graphql] ( github.com/graphql-go/graphql )
-- [graphql-go/handler] ( github.com/graphql-go/handler )
 ***
 ### Directory Structure
 
