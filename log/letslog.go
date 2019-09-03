@@ -12,12 +12,17 @@ import (
 var logger = log.New(colorable.NewColorableStderr(), "", 0)
 
 type logFunc func(string, ...interface{})
+type logFuncInterface func(...interface{})
 
 var (
 	Debug logFunc
+	Debugln logFuncInterface
 	Info  logFunc
+	Infoln logFuncInterface
 	Warn  logFunc
+	Warnln logFuncInterface
 	Error logFunc
+	Errorln logFuncInterface
 )
 
 var colors = map[string]string{
@@ -97,6 +102,35 @@ func newLogFunc(prefix string, omitLog bool) func(string, ...interface{}) {
 	}
 }
 
+func newLogFuncInterface(prefix string, omitLog bool) func(...interface{}) {
+	color, clear := "", ""
+	color = fmt.Sprintf("\033[%sm", logColor(prefix))
+	clear = fmt.Sprintf("\033[%sm", colors["reset"])
+	prefix = fmt.Sprintf("%-11s", prefix)
+
+	if prefix != "error" {
+		return func(v ...interface{}) {
+			now := time.Now()
+			timeString := fmt.Sprintf("%d:%d:%02d", now.Hour(), now.Minute(), now.Second())
+			format := fmt.Sprintf("%s%s %s |%s", color, timeString, prefix, clear)
+			if omitLog == false {
+				logger.Println(format)
+				logger.Println(v...)
+			}
+		}
+	} else {
+		return func(v ...interface{}) {
+			now := time.Now()
+			timeString := fmt.Sprintf("%d:%d:%02d", now.Hour(), now.Minute(), now.Second())
+			format := fmt.Sprintf("%s%s %s |%s", color, timeString, prefix, clear)
+			if omitLog == false {
+				logger.Println(format)
+				logger.Println(v...)
+			}
+		}
+	}
+}
+
 func logColor(logName string) string {
 	settingsKey := fmt.Sprintf("log_color_%s", logName)
 	colorName := settings[settingsKey]
@@ -109,7 +143,6 @@ func Fatal(err error) {
 }
 
 func InitLogFuncs() {
-
 	// Configure Logging
 	logger.SetOutput(&lumberjack.Logger{
 		Filename:   "./log/letsgo.log",
@@ -125,27 +158,41 @@ func InitLogFuncs() {
 
 	if targetLevelIndex == 3 {
 		Debug = newLogFunc("debug", false)
+		Debugln = newLogFuncInterface("debug", false)
 		Info = newLogFunc("info", false)
+		Infoln = newLogFuncInterface("info", false)
 		Warn = newLogFunc("warn", false)
+		Warnln = newLogFuncInterface("warn", false)
 		Error = newLogFunc("error", false)
+		Errorln = newLogFuncInterface("error", false)
 	}
 	if targetLevelIndex == 2 {
 		Debug = newLogFunc("debug", true)
+		Debugln = newLogFuncInterface("debug", true)
 		Info = newLogFunc("info", false)
+		Infoln = newLogFuncInterface("info", false)
 		Warn = newLogFunc("warn", false)
+		Warnln = newLogFuncInterface("warn", false)
 		Error = newLogFunc("error", false)
+		Errorln = newLogFuncInterface("error", false)
 	}
 	if targetLevelIndex == 1 {
 		Debug = newLogFunc("debug", true)
 		Info = newLogFunc("info", true)
+		Infoln = newLogFuncInterface("info", true)
 		Warn = newLogFunc("warn", false)
+		Warnln = newLogFuncInterface("warn", false)
 		Error = newLogFunc("error", false)
+		Errorln = newLogFuncInterface("error", false)
 	}
 	if targetLevelIndex == 0 {
 		Debug = newLogFunc("debug", true)
 		Info = newLogFunc("info", true)
+		Infoln = newLogFuncInterface("info", true)
 		Warn = newLogFunc("warn", true)
+		Warnln = newLogFuncInterface("warn", true)
 		Error = newLogFunc("error", false)
+		Errorln = newLogFuncInterface("error", false)
 	}
 
 	Debug("Log level set to %s", targetLevel)
