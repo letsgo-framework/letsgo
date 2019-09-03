@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -30,22 +31,25 @@ type TestSuite struct {
 
 var _ = Suite(&TestSuite{})
 
-func (s *TestSuite) SetUpTest(c *C) {
-	err := godotenv.Load("../.env.testing")
-
+func TestMain(m *testing.M) {
 	// Setup log writing
 	letslog.InitLogFuncs()
+	err := godotenv.Load("../.env.testing")
+	database.TestConnect()
+
+	database.DB.Drop(context.Background())
 
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	s.srv = routes.PaveRoutes()
+	s := TestSuite{
+		srv: routes.PaveRoutes(),
+	}
 	go s.srv.Run(os.Getenv("PORT"))
-}
 
-func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
+
 
 func (s *TestSuite) TestGetEnv(c *C) {
 
@@ -242,6 +246,46 @@ func (s *TestSuite) TestDBInsert(c *C) {
 		c.Error(err)
 	}
 	c.Assert(result, Equals, input)
+}
+
+//Test User-registartion
+func (s *TestSuite) Test1UserRegistration(c *C) {
+	data := types.User{
+		Name:     "Letsgo User",
+		Username:    "letsgoUs3r",
+		Password: "qwerty",
+	}
+
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/register"
+	client := &http.Client{}
+	b := new(bytes.Buffer)
+	json.NewEncoder(b).Encode(data)
+	req, _ := http.NewRequest("POST", requestURL, b)
+	resp, err := client.Do(req)
+	if err != nil {
+		c.Error(err)
+		c.Fail()
+	}
+	defer resp.Body.Close()
+	respData, _ := ioutil.ReadAll(resp.Body)
+	var user types.User
+	json.Unmarshal(respData, &user)
+	c.Assert(resp.StatusCode, Equals, 200)
+}
+
+func (s *TestSuite) Test2UserLoginPasswordGrant(c *C) {
+	requestURL := "http://127.0.0.1" + os.Getenv("PORT") + "/api/v1/login?grant_type=password&client_id=client@letsgo&client_secret=Va4a8bFFhTJZdybnzyhjHjj6P9UVh7UL&scope=read&username=letsgoUs3r&password=qwerty"
+	req, _ := http.NewRequest("GET", requestURL, nil)
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		letslog.Debug(err.Error())
+		c.Error(err)
+		c.Fail()
+	}
+	defer resp.Body.Close()
+
+	c.Assert(resp.StatusCode, Equals, 200)
 }
 
 func Test(t *testing.T) {
