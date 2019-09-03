@@ -54,6 +54,16 @@ func AuthInit() {
 	ginserver.SetClientInfoHandler(server.ClientFormHandler)
 
 	ginserver.SetPasswordAuthorizationHandler(login)
+
+	err := clientStore.Set("client@letsgo", &models.Client{
+		ID:     "client@letsgo",
+		Secret: "Va4a8bFFhTJZdybnzyhjHjj6P9UVh7UL",
+		Domain: "http://localhost:8080",
+	})
+
+	if err != nil {
+		letslog.Error(err.Error())
+	}
 }
 
 // GetCredentials sends client credentials
@@ -106,7 +116,7 @@ func Register (c *gin.Context) {
 		letslog.Error(err.Error())
 		c.Abort()
 	}
-	c.JSON(200, a)
+	c.JSON(200, map[string]string{"message" : "Registration Successful"})
 	c.Done()
 }
 
