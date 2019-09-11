@@ -39,10 +39,10 @@ You need to create a `.env.testing` file from `.env.example` for running tests.
 ### Setting up
 
 - clone letsGo
-- change package name in `glide.yaml` to your package name
+- change package name in `go.mod` to your package name
 - change the internal package (controllers, tests, helpers etc.) paths as per your requirement
 - setup `.env` and `.env.testing`
-- run `glide install` to install dependencies
+- run `go mod download` to install dependencies
 
 #### OR `letsgo-cli` can be used to setup new project
 
