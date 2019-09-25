@@ -1,0 +1,17 @@
+version: "2"
+services:
+  app:
+    container_name: letsgo
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - /var/mongo/data:/data/db
+    ports:
+      - "27017:27017"
