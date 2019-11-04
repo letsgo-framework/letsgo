@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/letsgo-framework/letsgo.svg?branch=master)](https://travis-ci.org/letsgo-framework/letsgo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/letsgo-framework/letsgo)](https://goreportcard.com/report/github.com/letsgo-framework/letsgo)
 [![Coverage Status](https://coveralls.io/repos/github/letsgo-framework/letsgo/badge.svg?branch=master)](https://coveralls.io/github/letsgo-framework/letsgo?branch=master)
+[![Sourcegraph](https://sourcegraph.com/github.com/letsgo-framework/letsgo/-/badge.svg)](https://sourcegraph.com/github.com/letsgo-framework/letsgo?badge)
 [![Join the chat at https://gitter.im/letsgo-framework/community](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/letsgo-framework/community)
 
 ## Go api starter
